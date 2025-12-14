@@ -15,10 +15,10 @@ class OperatorAndDemoSeeder extends Seeder
     {
         // Operator demo
         $operator = User::firstOrCreate(
-            ['email' => 'operator@example.com'],
+            ['email' => 'operator@ksmif.org'],
             [
                 'name' => 'Operator Demo',
-                'password' => Hash::make('password123'),
+                'password' => Hash::make('Password321'),
                 'email_verified_at' => now(),
                 'is_operator' => true,
             ]

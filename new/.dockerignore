@@ -1,0 +1,58 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Docker
+docker-compose.yml
+.dockerignore
+Dockerfile
+
+# Documentation
+*.md
+CHANGELOG.md
+README.md
+LOGO-INTEGRATION.md
+
+# Testing
+tests/
+phpunit.xml
+.phpunit.result.cache
+
+# Development files
+.env.example
+.editorconfig
+.styleci.yml
+
+# Node modules
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Laravel storage (akan di-mount sebagai volume)
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+bootstrap/cache/*
+
+# Public uploads (akan di-mount sebagai volume)
+public/storage
+
+# Build artifacts
+public/build/
+public/hot
+
+# Vendor (akan di-install via composer)
+vendor/

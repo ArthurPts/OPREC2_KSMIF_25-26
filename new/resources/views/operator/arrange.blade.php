@@ -103,8 +103,8 @@
     </x-card>
 
     {{-- Modal Preview HTML --}}
-    <div id="previewModal" class="fixed inset-0 hidden items-center justify-center bg-black/70 z-50 backdrop-blur-sm p-4">
-        <div class="bg-bg-card rounded-none shadow-xl w-full max-w-7xl max-h-[95vh] overflow-hidden flex flex-col border-2" id="modalContainer">
+    <div id="previewModal" class="fixed inset-0 hidden items-center justify-center bg-black/70 z-50 backdrop-blur-sm p-2 md:p-4">
+        <div class="bg-bg-card rounded-none shadow-xl w-full h-full md:h-[98vh] md:max-w-[98vw] overflow-hidden flex flex-col border-2" id="modalContainer">
             {{-- Header with Status --}}
             <div class="flex items-center justify-between px-5 py-3 border-b border-border-default" id="modalHeader">
                 <div class="flex items-center gap-3">
@@ -211,8 +211,15 @@
                     const base64Content = li.getAttribute('data-content-base64') || '';
                     if (!base64Content) return '';
                     try {
-                        // Decode base64 to get original HTML
-                        return atob(base64Content);
+                        // Decode base64 with UTF-8 support
+                        // atob() doesn't handle UTF-8, so we need to decode properly
+                        const binaryString = atob(base64Content);
+                        const bytes = new Uint8Array(binaryString.length);
+                        for (let i = 0; i < binaryString.length; i++) {
+                            bytes[i] = binaryString.charCodeAt(i);
+                        }
+                        const decoder = new TextDecoder('utf-8');
+                        return decoder.decode(bytes);
                     } catch (e) {
                         console.error('Error decoding base64:', e);
                         return '';
